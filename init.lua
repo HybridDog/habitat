@@ -13,8 +13,8 @@ function habitat:generate(node, surface, minp, maxp, height_min, height_max, spr
 		local length = maxp.z-minp.z
 		print("[habitat] "..node)
 		local count = 0
-		for x_current = spread/2, width, spread do
-			for z_current = spread/2, length, spread do
+		for z_current = spread/2, length, spread do
+			for x_current = spread/2, width, spread do
 				local x_deviation = math.floor(math.random(spread))-spread/2
 				local z_deviation = math.floor(math.random(spread))-spread/2
 				local n
