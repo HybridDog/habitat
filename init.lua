@@ -1,7 +1,7 @@
 habitat = {}
 
 local habitat_data = {}
-function habitat.generate(...)
+function habitat:generate(...)
 	table.insert(habitat_data, {...})
 end
 
@@ -18,7 +18,6 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			local height_max_min = math.min(height_max,maxp.y)
 			local width = maxp.x-minp.x
 			local length = maxp.z-minp.z
-			print("[habitat] "..node)
 			local count = 0
 			for z_current = spread/2, length, spread do
 				for x_current = spread/2, width, spread do
@@ -41,14 +40,12 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					end
 				end
 			end
-			info = info..count.." "..node.."s "
+			if count ~= 0 then
+				info = info..count.." "..node.."s "
+			end
 		end
 	end
 	print(info)
 end)
-
-function habitat:generate(...)
-	habitat.generate(...)
-end
 
 print("[Habitat] Loaded!")
