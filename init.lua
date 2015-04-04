@@ -22,7 +22,7 @@ function habitat:generate(node, surface, minp, maxp, height_min, height_max, spr
     local n = minetest.env:get_node(p).name
     local n_top
     local p_top
-    print(node)
+    print("[habitat] "..node)
     local count = 0
     for x_current = spread/2, width, spread do
       for z_current = spread/2, length, spread do
@@ -42,7 +42,7 @@ function habitat:generate(node, surface, minp, maxp, height_min, height_max, spr
         end
       end
     end
-    print(count)
+    print("[habitat] "..count)
   end)
 end
 print("[Habitat] Loaded!")
