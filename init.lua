@@ -43,7 +43,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					local x_deviation = math.floor(math.random(spread))-spread/2
 					local z_deviation = math.floor(math.random(spread))-spread/2
 					local n
-					for y_current = height_max_min, height_min_max, -1 do 
+					for y_current = height_max_min, height_min_max, -1 do
 						local n_top = n
 						local p = {x=minp.x+x_current+x_deviation, y=y_current, z=minp.z+z_current+z_deviation}
 						n = data[area:indexp(p)]
