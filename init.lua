@@ -2,7 +2,7 @@ habitat = {}
 
 local habitat_data = {}
 function habitat:generate(...)
-	table.insert(habitat_data, {...})
+	habitat_data[#habitat_data+1] = {...}
 end
 
 local c = {air = minetest.get_content_id("air")}
@@ -18,7 +18,7 @@ end
 
 minetest.register_on_generated(function(minp, maxp, seed)
 	local t1 = os.clock()
-	print("[habitat] generating...")
+	minetest.log("info", "[habitat] generating...")
 
 	local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
 	local data = vm:get_data()
@@ -26,16 +26,16 @@ minetest.register_on_generated(function(minp, maxp, seed)
 
 	local count = 0
 	for _,data in pairs(habitat_data) do
-		local node, surface, _, _, height_min, height_max, spread, habitat_size, habitat_nodes, antitat_size, antitat_nodes
+		local node, surface, _, _, y_min, y_max, spread, habitat_size, habitat_nodes, antitat_size, antitat_nodes
 			= unpack(data)
-		if height_min <= maxp.y
-		and height_max >= minp.y then
+		if y_min <= maxp.y
+		and y_max >= minp.y then
 
 			local node_id = get_content(node)
 			local surface_id = get_content(surface)
 
-			local height_min_max = math.max(height_min,minp.y)
-			local height_max_min = math.min(height_max,maxp.y)
+			local y_min_max = math.max(y_min,minp.y)
+			local y_max_min = math.min(y_max,maxp.y)
 			local width = maxp.x-minp.x
 			local length = maxp.z-minp.z
 			for z_current = spread/2, length, spread do
@@ -43,7 +43,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					local x_deviation = math.floor(math.random(spread))-spread/2
 					local z_deviation = math.floor(math.random(spread))-spread/2
 					local n
-					for y_current = height_max_min, height_min_max, -1 do
+					for y_current = y_max_min, y_min_max, -1 do
 						local n_top = n
 						local p = {x=minp.x+x_current+x_deviation, y=y_current, z=minp.z+z_current+z_deviation}
 						n = data[area:indexp(p)]
@@ -69,8 +69,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		vm:write_to_map()
 		info = info.."generated "..count.." nodes "
 	end
-	info = info..string.format("after ca. %.2fs", os.clock() - t1)
-	print(info)
+	minetest.log("info", info..string.format("after ca. %.2fs", os.clock() - t1))
 end)
 
-print("[Habitat] Loaded!")
+minetest.log("info", "[Habitat] Loaded!")

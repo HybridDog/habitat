@@ -1,10 +1,10 @@
- __   __  _______  _______  ___   _______  _______  _______ 
+ __   __  _______  _______  ___   _______  _______  _______
 |  | |  ||   _   ||  _    ||   | |       ||   _   ||       |
 |  |_|  ||  |_|  || |_|   ||   | |_     _||  |_|  ||_     _|
-|       ||       ||       ||   |   |   |  |       |  |   |  
-|       ||       ||  _   | |   |   |   |  |       |  |   |  
-|   _   ||   _   || |_|   ||   |   |   |  |   _   |  |   |  
-|__| |__||__| |__||_______||___|   |___|  |__| |__|  |___|  
+|       ||       ||       ||   |   |   |  |       |  |   |
+|       ||       ||  _   | |   |   |   |  |       |  |   |
+|   _   ||   _   || |_|   ||   |   |   |  |   _   |  |   |
+|__| |__||__| |__||_______||___|   |___|  |__| |__|  |___|
 
 BY:             bas080
 DESCRIPTION:    Adds the function to spawn nodes near certain nodes and away from others on world generate
@@ -14,7 +14,7 @@ FORUM:          http://forum.minetest.net/viewtopic.php?id=4612
 
 Instructions
 
-habitat:generate(node, surfaces, minp, maxp, height_min, height_max, spread, habitat_size, habitat_nodes, antitat_size, antitat_nodes)
+habitat:generate(node, surfaces, minp, maxp, y_min, y_max, spread, habitat_size, habitat_nodes, antitat_size, antitat_nodes)
 
 * height is the altitude between the node spawns
 * spawn near habitat nodes
